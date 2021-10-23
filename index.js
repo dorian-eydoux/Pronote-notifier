@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 require('dotenv').config()
 const { login } = require('@dorian-eydoux/pronote-api')
 const { existsSync, mkdirSync, writeFileSync } = require('fs')
