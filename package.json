@@ -1,0 +1,28 @@
+{
+  "name": "pronote-bot",
+  "description": "A Discord bot for Pronote",
+  "main": "index.js",
+  "keywords": [
+    "bot",
+    "discord",
+    "pronote"
+  ],
+  "dependencies": {
+    "@dorian-eydoux/pronote-api": "^2.3.4",
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorian-eydoux/Pronote-bot.git"
+  },
+  "author": "Dorian Eydoux <loaves_pickle0@icloud.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dorian-eydoux/Pronote-bot/issues"
+  },
+  "homepage": "https://github.com/dorian-eydoux/Pronote-bot#readme"
+}
