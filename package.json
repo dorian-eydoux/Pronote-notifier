@@ -20,7 +20,7 @@
     "url": "git+https://github.com/dorian-eydoux/Pronote-bot.git"
   },
   "author": "Dorian Eydoux <loaves_pickle0@icloud.com>",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/dorian-eydoux/Pronote-bot/issues"
   },
