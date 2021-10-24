@@ -1,4 +1,4 @@
-# Pronote-bot
+# Pronote notifier
 Notify Pronote changes using a Discord webhook
 
 ## Set up

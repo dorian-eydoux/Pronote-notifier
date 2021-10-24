@@ -1,9 +1,10 @@
 {
-  "name": "pronote-bot",
+  "name": "pronote-notifier",
   "description": "Notify Pronote changes using a Discord webhook",
   "main": "index.js",
   "keywords": [
     "discord",
+    "notifier",
     "notify",
     "pronote",
     "webhook"
@@ -18,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dorian-eydoux/Pronote-bot.git"
+    "url": "git+https://github.com/dorian-eydoux/Pronote-notifier.git"
   },
   "author": "Dorian Eydoux <loaves_pickle0@icloud.com>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/dorian-eydoux/Pronote-bot/issues"
+    "url": "https://github.com/dorian-eydoux/Pronote-notifier/issues"
   },
-  "homepage": "https://github.com/dorian-eydoux/Pronote-bot#readme"
+  "homepage": "https://github.com/dorian-eydoux/Pronote-notifier#readme"
 }
