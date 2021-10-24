@@ -19,3 +19,11 @@ DISCORD_MARK_WEBHOOK=https://discord.com/api/webhooks/123456789/abc
 
 \
 Then **Pronote notifier** is ready!
+
+## Usage
+It is recommended to run **Pronote notifier** every 15 minutes, which allows you to receive changes on Pronote quickly enough and avoid being rate limited
+
+Here is an example with a Cron job:
+```shell
+0,15,30,45 * * * * /path/to/Pronote-notifier/index.js
+```
