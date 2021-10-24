@@ -22,9 +22,7 @@ if (!existsSync(dir)) {
 
     const subjects = (await session.marks()).subjects
         .reduce((subjects, subject) => {
-            const name = subject.name
-            delete subject.name
-            subjects[name] = subject
+            if (!subjects[subject.name]) subjects[subject.name] = subject
             return subjects
         }, {})
 
@@ -35,10 +33,8 @@ if (!existsSync(dir)) {
         }))
         .flat()
         .reduce((marks, mark) => {
-            const id = mark.id
-            delete mark.id
             mark.value = mark.value || -1
-            marks[id] = mark
+            marks[mark.id] = mark
             return marks
         }, {})
 
@@ -48,14 +44,17 @@ if (!existsSync(dir)) {
         const oldMarks = require(`${dir}/${files.marks}`)
         Object.keys(marks).forEach(id => {
             const mark = marks[id]
+            const { value, average } = mark
             const oldMark = oldMarks[id]
             let kind
 
             if (!oldMark) {
                 kind = 'new'
-            } else if (mark.value !== oldMark) {
+            } else if (value !== oldMark) {
                 kind = 'update'
             } else return
+
+            if (!average) return
 
             console.info(`${kind === 'new' ? 'New mark' : 'Mark changed'}: ${id}`)
             messages.push(publishMark(kind, mark, subjects[mark.subject]))
