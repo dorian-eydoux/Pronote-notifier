@@ -1,6 +1,9 @@
 # Pronote notifier
 Notify Pronote changes using a Discord webhook
 
+## Requirement
+Node.js >=16.6.0
+
 ## Set up
 ### Step 1
 Install dependancies with npm
