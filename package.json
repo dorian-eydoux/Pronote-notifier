@@ -1,11 +1,12 @@
 {
   "name": "pronote-bot",
-  "description": "A Discord bot for Pronote",
+  "description": "Notify Pronote changes using a Discord webhook",
   "main": "index.js",
   "keywords": [
-    "bot",
     "discord",
-    "pronote"
+    "notify",
+    "pronote",
+    "webhook"
   ],
   "dependencies": {
     "@dorian-eydoux/pronote-api": "^2.3.4",

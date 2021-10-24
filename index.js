@@ -2,7 +2,7 @@
 require('dotenv').config()
 const { login } = require('@dorian-eydoux/pronote-api')
 const { existsSync, mkdirSync, writeFileSync } = require('fs')
-const discord = require('./discord')
+const { publishMark } = require('./discord')
 
 const { PRONOTE_URL, PRONOTE_USERNAME, PRONOTE_PASSWORD } = process.env
 let init = true
@@ -45,7 +45,6 @@ if (!existsSync(dir)) {
     const messages = []
 
     if (init) {
-        await discord.init()
         const oldMarks = require(`${dir}/${files.marks}`)
         Object.keys(marks).forEach(id => {
             const mark = marks[id]
@@ -59,7 +58,7 @@ if (!existsSync(dir)) {
             } else return
 
             console.info(`${kind === 'new' ? 'New mark' : 'Mark changed'}: ${id}`)
-            messages.push(discord.publishMark(kind, mark, subjects[mark.subject]))
+            messages.push(publishMark(kind, mark, subjects[mark.subject]))
         })
     } else console.info('Data will be initialized')
 
@@ -69,6 +68,5 @@ if (!existsSync(dir)) {
     writeFileSync(`${dir}/${files.marks}`, JSON.stringify(marks, null, 4))
 
     await Promise.all(messages)
-    discord.destroy()
 })()
 

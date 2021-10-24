@@ -1,5 +1,5 @@
 # Pronote-bot
-A Discord bot for Pronote
+Notify Pronote changes using a Discord webhook
 
 ## Set up
 ### Step 1
@@ -14,8 +14,7 @@ Load environement variables or create `.env` file like:
 PRONOTE_URL=https://demo.index-education.net/pronote/
 PRONOTE_USERNAME=demonstration
 PRONOTE_PASSWORD=pronotevs
-DISCORD_TOKEN=abc
-DISCORD_MARK_CHANNEL=123456789
+DISCORD_MARK_WEBHOOK=https://discord.com/api/webhooks/123456789/abc
 ```
 
 \
