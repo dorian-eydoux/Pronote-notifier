@@ -25,5 +25,5 @@ It is recommended to run **Pronote notifier** every 15 minutes, which allows you
 
 Here is an example with a Cron job:
 ```shell
-0,15,30,45 * * * * /path/to/Pronote-notifier/index.js
+0,15,30,45 * * * * cd /path/to/Pronote-notifier; ./index.js
 ```
