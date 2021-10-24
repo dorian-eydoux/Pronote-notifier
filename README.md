@@ -18,4 +18,4 @@ DISCORD_MARK_WEBHOOK=https://discord.com/api/webhooks/123456789/abc
 ```
 
 \
-Then **Pronote bot** is ready!
+Then **Pronote notifier** is ready!
