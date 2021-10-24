@@ -32,6 +32,7 @@ if (!existsSync(dir)) {
             return mark
         }))
         .flat()
+        .sort((a, b) => a.date - b.date)
         .reduce((marks, mark) => {
             mark.value = mark.value || -1
             marks[mark.id] = mark
