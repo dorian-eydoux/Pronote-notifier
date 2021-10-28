@@ -1,8 +1,9 @@
 const { WebhookClient, Formatters, MessageEmbed } = require('discord.js')
-const { bold, inlineCode } = Formatters
+const { bold, inlineCode, time } = Formatters
 
 const webhooks = {
     marks: new WebhookClient({ url: process.env.DISCORD_MARK_WEBHOOK }),
+    timetable: new WebhookClient({ url: process.env.DISCORD_TIMETABLE_WEBHOOK })
 }
 
 function publishMark(kind, mark, subject) {
@@ -24,4 +25,18 @@ function publishMark(kind, mark, subject) {
     return webhooks.marks.send({ embeds: [embed] })
 }
 
-module.exports = { publishMark }
+function publishLesson(lesson) {
+    const { color, status, subject, from, to, room, id } = lesson
+
+    const embed = new MessageEmbed()
+        .setColor(color)
+        .setTitle(bold(status))
+        .setDescription(subject)
+        .addField('Début', time(from, 'R'), true)
+        .addField('Fin', time(to, 'R'), true)
+        .addField('Salle', room || 'Inconnu')
+        .setFooter(id)
+    return webhooks.timetable.send({ embeds: [embed] })
+}
+
+module.exports = { publishMark, publishLesson }

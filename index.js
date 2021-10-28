@@ -2,18 +2,20 @@
 require('dotenv').config()
 const { login } = require('@dorian-eydoux/pronote-api')
 const { existsSync, mkdirSync, writeFileSync } = require('fs')
-const { publishMark } = require('./discord')
+const { publishMark, publishLesson } = require('./discord')
 
 const { PRONOTE_URL, PRONOTE_USERNAME, PRONOTE_PASSWORD } = process.env
+const TIMETABLE_RANGE = require('ms')(process.env.TIMETABLE_RANGE || '1w')
 let init = true
 const dir = './data'
 const files = {
     marks: 'marks.json',
+    timetable: 'timetable.json'
 }
 
 if (!existsSync(dir)) {
     init = false
-    mkdirSync(dir)
+    console.info('Data will be initialized')
 }
 
 (async () => {
@@ -39,6 +41,14 @@ if (!existsSync(dir)) {
             return marks
         }, {})
 
+    const from = new Date()
+    const timetable = (await session.timetable(from, new Date(from.getTime() + TIMETABLE_RANGE)))
+        .filter(({ status, hasDuplicate, isAway, isCancelled }) => status && !(hasDuplicate && (isAway || isCancelled)))
+        .reduce((lessons, lesson) => {
+            lessons[lesson.id] = lesson
+            return lessons
+        }, {})
+
     const messages = []
 
     if (init) {
@@ -60,12 +70,29 @@ if (!existsSync(dir)) {
             console.info(`${kind === 'new' ? 'New mark' : 'Mark changed'}: ${id}`)
             messages.push(publishMark(kind, mark, subjects[mark.subject]))
         })
-    } else console.info('Data will be initialized')
+
+        const oldTimetable = require(`${dir}/${files.timetable}`)
+        Object.keys(timetable).forEach(id => {
+            const lesson = timetable[id]
+            const { status } = lesson
+            const oldLesson = oldTimetable[id]
+
+            if (status !== oldLesson) {
+                console.info(`Lesson status changed: ${id}`)
+                messages.push(publishLesson(lesson))
+            }
+        })
+    } else mkdirSync(dir)
 
     Object.keys(marks).map((mark) => {
         marks[mark] = marks[mark].value
     })
     writeFileSync(`${dir}/${files.marks}`, JSON.stringify(marks, null, 4))
+
+    Object.keys(timetable).map(lesson => {
+        timetable[lesson] = timetable[lesson].status
+    })
+    writeFileSync(`${dir}/${files.timetable}`, JSON.stringify(timetable, null, 4))
 
     await Promise.all(messages)
 })()

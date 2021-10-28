@@ -18,6 +18,8 @@ PRONOTE_URL=https://demo.index-education.net/pronote/
 PRONOTE_USERNAME=demonstration
 PRONOTE_PASSWORD=pronotevs
 DISCORD_MARK_WEBHOOK=https://discord.com/api/webhooks/123456789/abc
+DISCORD_TIMETABLE_WEBHOOK=https://discord.com/api/webhooks/123456789/abc
+TIMETABLE_RANGE=1 week
 ```
 
 \
