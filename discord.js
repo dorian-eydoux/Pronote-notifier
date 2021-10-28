@@ -25,9 +25,7 @@ function publishMark(kind, mark, subject) {
     return webhooks.marks.send({ embeds: [embed] })
 }
 
-function publishLesson(lesson) {
-    const { color, status, subject, from, to, room, id } = lesson
-
+function publishLesson({ color, status, subject, from, to, room, id }) {
     const embed = new MessageEmbed()
         .setColor(color)
         .setTitle(bold(status))
