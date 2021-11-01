@@ -87,8 +87,8 @@ if (!existsSync(dir)) {
         timetable[lesson] = timetable[lesson].status
     })
 
-    writeFileSync(`${dir}/${files.marks}`, JSON.stringify(marks, null, 4))
-    writeFileSync(`${dir}/${files.timetable}`, JSON.stringify(timetable, null, 4))
+    writeFileSync(`${dir}/${files.marks}`, JSON.stringify(marks, null, 2))
+    writeFileSync(`${dir}/${files.timetable}`, JSON.stringify(timetable, null, 2))
 
     await Promise.all(messages)
 })()
