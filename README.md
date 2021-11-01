@@ -16,7 +16,15 @@ Load environement variables:
 
 Then **Pronote notifier** is ready!
 
-You can create a `.env` file at the root of the project, then when the application is launched, this file will be loaded automatically
+You can create a `.env` file at the root of the project, then when the application is launched, this file will be loaded automatically. Example:
+```
+PRONOTE_URL=https://demo.index-education.net/pronote/
+PRONOTE_USERNAME=demonstration
+PRONOTE_PASSWORD=pronotevs
+DISCORD_MARK_WEBHOOK=https://discord.com/api/webhooks/123456789/abc
+DISCORD_TIMETABLE_WEBHOOK=https://discord.com/api/webhooks/123456789/abc
+TIMETABLE_RANGE=1w
+```
 ## Usage
 It is recommended to run **Pronote notifier** every 15 minutes, which allows you to receive Pronote changes quickly enough and avoid being rate limited
 
