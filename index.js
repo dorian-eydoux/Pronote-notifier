@@ -92,4 +92,3 @@ if (!existsSync(dir)) {
 
     await Promise.all(messages)
 })()
-
