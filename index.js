@@ -59,8 +59,8 @@ if (!existsSync(dir)) {
             const oldMark = oldMarks[id]
             let kind
 
-            if (!oldMark) { kind = 'new' }
-            else if (value !== oldMark) { kind = 'update'}
+            if (!oldMark) kind = 'new'
+            else if (value !== oldMark) kind = 'update'
             else return
 
             if (!average) return // Skip empty marks
