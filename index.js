@@ -22,7 +22,7 @@ if (!existsSync(dir)) {
     const session = await login(PRONOTE_URL, PRONOTE_USERNAME, PRONOTE_PASSWORD)
     console.info(`Pronote client logged in as ${session.user.name} ${session.user.studentClass.name}`)
 
-    const subjects = (await session.marks()).subjects
+    const subjects = (await session.marks(1)).subjects
         .reduce((subjects, subject) => {
             if (!subjects[subject.name]) subjects[subject.name] = subject
             return subjects
