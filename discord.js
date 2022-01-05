@@ -20,7 +20,7 @@ function publishMark(kind, mark, subject) {
         .setColor(subject.color)
         .setTitle(bold((kind === 'new' ? 'Nouvelle note' : 'Note changé') + (title ? ` "${title}"`: '')))
         .setDescription(`${bold(isAway ? 'Non noté' : value)} en ${subject.name}\n${descriptions}`)
-        .setFooter(id)
+        .setFooter({ text: id })
         .setTimestamp(date)
     return webhooks.marks.send({ embeds: [embed] })
 }
@@ -33,7 +33,7 @@ function publishLesson({ color, status, subject, from, to, room, id }) {
         .addField('Début', time(from, 'R'), true)
         .addField('Fin', time(to, 'R'), true)
         .addField('Salle', room || 'Inconnu')
-        .setFooter(id)
+        .setFooter({ text: id })
     return webhooks.timetable.send({ embeds: [embed] })
 }
 
